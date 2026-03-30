@@ -1,4 +1,4 @@
-
+import json
 import time
 #------------------------
 # Starting Menu
@@ -8,16 +8,14 @@ def start_menu():
     time.sleep(1)
     print("Please input one of the following options.")
     print("1. Start Game")
-    print("2. Load Save")
-    print("3. Quit")
+    print("2. Quit")
 
     choice = input("> ")
 
     if choice == "1":
         print("Starting game...")
+
     elif choice == "2":
-        print("Loading save...")
-    elif choice == "3":
         print("Goodbye!")
     else:
         print("Invalid option. Try again.")
@@ -39,15 +37,10 @@ def in_game_menu():
         return "resume"
 
     elif choice == "2":
-        print("Saving game...")
-        return "save"
-
-    elif choice == "3":
         print("Returning to main menu...")
         return "quit"
 
     else:
         print("Invalid option. Try again.")
         return in_game_menu()
-
-
+    `
