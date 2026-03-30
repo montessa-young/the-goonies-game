@@ -1,25 +1,20 @@
-import BlacksmithBuyables.py
-from BlacksmithBuyables.py import Headgear_Buyables
 import time
 import random
+from BlacksmithBuyables import shop
 #----------------------
 # Davey (Black Smith)
 #----------------------
 
-class NPC:
-    def Davey():
-        Intro_Davey_Dialogue = ("Davey: Would you like to buy; Headgear, Facegear, Undershirtgear, Overshirtgear, Belt, Pants, Shoes?")
-        print(Intro_Davey_Dialogue)
-        Choice_001 = input()
-        if Choice_001 == "Headgear" or "headgear":
-            print(Headgear_Buyables)
+
+def Davey():
+    print("Davey: Would you like to buy; Headgear, Facegear, Undershirtgear, Overshirtgear, Belt, Pants, Shoes?")
+    shop()
 
 
 #----------------------
 # Micheal Jackson (Intro)
 #----------------------
 
-class NPC:
     def MikeJack():
         while True:
             autosaveran = random.randint(1,6)
@@ -101,4 +96,9 @@ class NPC:
 
 #----------------------
 # Julius Caesar (50 Emperor
+
+
+
+
+
 #----------------------
