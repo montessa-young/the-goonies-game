@@ -1,7 +1,10 @@
+import time
+import random
 from BlacksmithBuyables import shop
 #----------------------
 # Davey (Black Smith)
 #----------------------
+
 
 def Davey():
     print("Davey: Would you like to buy; Headgear, Facegear, Undershirtgear, Overshirtgear, Belt, Pants, Shoes?")
@@ -12,6 +15,28 @@ def Davey():
 # Micheal Jackson (Intro)
 #----------------------
 
+    def MikeJack():
+        while True:
+            autosaveran = random.randint(1,6)
+            Intro_MikeJack_Dial = ("Michael Jackson: Would you like to go on a quick adventure with me? y/n")
+            yn_choice = ()
+            if yn_choice == "y":
+                print("Awesome sauce! Come with me to your first battle!")
+                break
+            elif yn_choice == "n":
+                print("Too bad! You can't play the game without starting it!")
+                break
+            else:
+                print("Please retry, invalid option")
+        time.sleep(1)
+        print("Hey, just to let you know that 8 is the pause menu, and 9 is the inventory button,")
+        print("the menu or inventory will NOT be available during quick times, boss battles, shops,")
+        print("etc., etc., so be prepared for that")
+        time.sleep(10)
+        print("Auto Saving...")
+        time.sleep(autosaveran)
+        print("OH NO! GEORGE HAS DESTROYED MJ!!!!")
+        Davey()
 
 
 #----------------------
