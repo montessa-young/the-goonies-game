@@ -40,7 +40,9 @@ class NPC:
         time.sleep(10)
         print("Auto Saving...")
         time.sleep(autosaveran)
+        print("OH NO! GEORGE HAS DESTROYED MJ!!!!")
         Davey()
+
 
 #----------------------
 # Mario (50 Mafia Boss)
