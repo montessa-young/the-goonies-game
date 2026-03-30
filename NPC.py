@@ -1,14 +1,11 @@
-import BlacksmithBuyables.py
+from BlacksmithBuyables import shop
 #----------------------
 # Davey (Black Smith)
 #----------------------
 
-class NPC:
-    def Davey():
-        Intro_Davey_Dialogue = ("Davey: Would you like to buy; Headgear, Facegear, Undershirtgear, Overshirtgear, Belt, Pants, Shoes?")
-        Choice_001 = input()
-        if Choice_001 == "Headgear" or "headgear":
-            print(Headgear_Buyables)
+def Davey():
+    print("Davey: Would you like to buy; Headgear, Facegear, Undershirtgear, Overshirtgear, Belt, Pants, Shoes?")
+    shop()
 
 
 #----------------------

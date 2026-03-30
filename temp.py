@@ -4,9 +4,7 @@ import random
 def typing_challenge(context_word):
 
     # Use a more descriptive list of words for the game
-    words_to_type = [context_word, "quick", "escape", "action", "now"]
-    easy_words_to_type = []
-    hard_word_to_type = []
+    words_to_type = [context_word, "quick", "escape", "action", "now", "fire", "bombard", "blitz"]
 
     TIMEOUT = 6  # seconds (made shorter to be challenging)
 
