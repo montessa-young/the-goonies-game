@@ -1,5 +1,6 @@
 import json
 import time
+from NPC import Davey
 #------------------------
 # Starting Menu
 #------------------------
@@ -10,13 +11,14 @@ def start_menu():
     print("1. Start Game")
     print("2. Quit")
 
-    choice = input("> ")
+    choice = input(": ")
 
     if choice == "1":
         print("Starting game...")
-
+        Davey()
     elif choice == "2":
         print("Goodbye!")
+        break
     else:
         print("Invalid option. Try again.")
         start_menu()
@@ -27,8 +29,7 @@ def in_game_menu():
     print("\n--- IN‑GAME MENU ---")
     time.sleep(0.5)
     print("1. Resume")
-    print("2. Save Game")
-    print("3. Quit to Main Menu")
+    print("3. Quit")
 
     choice = input("> ")
 
@@ -43,4 +44,3 @@ def in_game_menu():
     else:
         print("Invalid option. Try again.")
         return in_game_menu()
-    `

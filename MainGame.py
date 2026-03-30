@@ -2,9 +2,9 @@
 #Starting Menu
 #--------------------
 
-import GameMenu
+from GameMenu import start_menu
 
-GameMenu.start_menu()
+start_menu()
 
 
 
