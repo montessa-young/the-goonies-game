@@ -18,7 +18,6 @@ def start_menu():
         Davey()
     elif choice == "2":
         print("Goodbye!")
-        break
     else:
         print("Invalid option. Try again.")
         start_menu()
