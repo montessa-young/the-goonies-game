@@ -1,6 +1,5 @@
 import json
 import os
-from Player import Player
 from StoryManager import StoryState
 
 SAVE_FILE = "saves.json"
@@ -38,6 +37,8 @@ def serialize_story(story):
 
 
 def deserialize_player(data):
+    from Player import Player   # ← ADD THIS LINE
+
     p = Player(data["name"])
     p.hp = data["hp"]
     p.max_hp = data["max_hp"]
@@ -54,6 +55,7 @@ def deserialize_player(data):
         p.inventory.gear[slot] = saved_gear.get(slot)
 
     return p
+
 
 
 def deserialize_story(data):
