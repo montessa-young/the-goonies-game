@@ -1,45 +1,48 @@
-import json
-import time
-from NPC import Davey
-#------------------------
-# Starting Menu
-#------------------------
-def start_menu():
-    print("Welcome to GAME.")
-    time.sleep(1)
-    print("Please input one of the following options.")
-    print("1. Start Game")
-    print("2. Quit")
+from Game import Game
+from SaveManager import initialize_save_file, load_game
 
-    choice = input(": ")
 
-    if choice == "1":
-        print("Starting game...")
-        Davey()
-    elif choice == "2":
-        print("Goodbye!")
-    else:
-        print("Invalid option. Try again.")
-        start_menu()
-#-----------------------
-# In Game Menu
-#-----------------------
-def in_game_menu():
-    print("\n--- IN‑GAME MENU ---")
-    time.sleep(0.5)
-    print("1. Resume")
-    print("3. Quit")
+def main_menu():
+    initialize_save_file()
 
-    choice = input("> ")
+    while True:
+        print("=== RPG GAME ===")
+        print("1. New Game")
+        print("2. Load Game")
+        print("3. Quit")
 
-    if choice == "1":
-        print("Resuming game...")
-        return "resume"
+        choice = input("> ").strip()
 
-    elif choice == "2":
-        print("Returning to main menu...")
-        return "quit"
+        if choice == "1":
+            name = input("Enter your name: ").strip() or "Hero"
+            game = Game()
+            game.player.name = name
+            game.main_loop()
 
-    else:
-        print("Invalid option. Try again.")
-        return in_game_menu()
+        elif choice == "2":
+            print("\nWhich slot?")
+            print("1. Slot1")
+            print("2. Slot2")
+            print("3. Slot3")
+            print("4. AutoSave")
+            print("0. Back")
+
+            c = input("> ").strip()
+            slot_map = {"1": "Slot1", "2": "Slot2", "3": "Slot3", "4": "AutoSave"}
+
+            if c in slot_map:
+                p, s = load_game(slot_map[c])
+                if p:
+                    game = Game(p, s)
+                    game.main_loop()
+
+        elif choice == "3":
+            print("Goodbye!")
+            break
+
+        else:
+            print("Invalid choice.")
+
+
+if __name__ == "__main__":
+    main_menu()
