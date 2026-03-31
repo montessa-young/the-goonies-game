@@ -2,5 +2,34 @@
   "Slot1": null,
   "Slot2": null,
   "Slot3": null,
-  "AutoSave": null
+  "AutoSave": {
+    "player": {
+      "name": "Joe",
+      "hp": 100,
+      "max_hp": 100,
+      "min_damage": 5,
+      "max_damage": 12,
+      "defense": 0,
+      "crit_rate": 0.1,
+      "gold": 50,
+      "inventory": [],
+      "gear": {
+        "Headgear": null,
+        "Facegear": null,
+        "Undershirt": null,
+        "Overshirt": null,
+        "Belt": null,
+        "Pants": null,
+        "Shoes": null,
+        "Swords": null,
+        "Shields": null,
+        "Guns": null
+      }
+    },
+    "story": {
+      "achievements": [],
+      "boss_gear": [],
+      "lost_to_sonic": false
+    }
+  }
 }
