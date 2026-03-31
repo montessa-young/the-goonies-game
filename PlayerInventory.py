@@ -1,68 +1,84 @@
+from SaveManager import auto_save
 
-#-------------------------------
-# Player Inventory
-#-------------------------------
 class PlayerInventory:
     def __init__(self):
-        self.slots = {
+        self.items = []
+        self.gear = {
             "Headgear": None,
             "Facegear": None,
-            "Undershirtgear": None,
-            "Overshirtgear": None,
+            "Undershirt": None,
+            "Overshirt": None,
             "Belt": None,
             "Pants": None,
-            "Shoes": None
+            "Shoes": None,
+            "Swords": None,
+            "Shields": None,
+            "Guns": None
         }
 
-
-        self.inventory = [None] * 28
-
-    # -------------------------
-    # Gear Slot Functions
-    # -------------------------
-    def equip(self, slot, item):
-        if slot in self.slots:
-            self.slots[slot] = item
-            print(f"Equipped {item} in {slot}.")
-        else:
-            print(f"{slot} is not a valid gear slot.")
-
-    def unequip(self, slot):
-        if slot in self.slots:
-            removed = self.slots[slot]
-            self.slots[slot] = None
-            print(f"Unequipped {removed} from {slot}.")
-        else:
-            print(f"{slot} is not a valid gear slot.")
-
-    # -------------------------
-    # Inventory Slot Functions
-    # -------------------------
     def add_item(self, item):
-        for i in range(len(self.inventory)):
-            if self.inventory[i] is None:
-                self.inventory[i] = item
-                print(f"Added {item} to slot {i + 1}.")
+        self.items.append(item)
+        print(f"Added {item['name']} to your inventory.")
+
+    def equip_item(self, player, item_name, story=None):
+        for item in self.items:
+            if item["name"] == item_name:
+                slot = self.find_slot_for_item(item_name)
+
+                if slot is None:
+                    print("This item cannot be equipped.")
+                    return
+
+                if self.gear[slot]:
+                    old = self.gear[slot]
+                    self.remove_stats(player, old)
+                    self.items.append(old)
+                    print(f"Unequipped {old['name']}.")
+
+                self.gear[slot] = item
+                self.apply_stats(player, item)
+                self.items.remove(item)
+
+                print(f"Equipped {item['name']} in {slot}.")
+                if story:
+                    auto_save(player, story)
                 return
-        print("Inventory is full! Cannot add item.")
 
-    def remove_item(self, slot_number):
-        index = slot_number - 1
-        if 0 <= index < len(self.inventory):
-            removed = self.inventory[index]
-            self.inventory[index] = None
-            print(f"Removed {removed} from slot {slot_number}.")
-        else:
-            print("Invalid slot number.")
+        print("You don't have that item.")
 
-    # -------------------------
-    # Display Functions
-    # -------------------------
-    def show_inventory(self):
-        print("\n--- GEAR SLOTS ---")
-        for slot, item in self.slots.items():
-            print(f"{slot}: {item if item else 'Empty'}")
+    def unequip(self, player, slot, story=None):
+        if slot not in self.gear:
+            print("Invalid slot.")
+            return
 
-        print("\n--- ITEM SLOTS (28) ---")
-        for i, item in enumerate(self.inventory, start=1):
-            print(f"Slot {i}: {item if item else 'Empty'}")
+        if self.gear[slot] is None:
+            print("Nothing is equipped there.")
+            return
+
+        item = self.gear[slot]
+        self.remove_stats(player, item)
+        self.items.append(item)
+        self.gear[slot] = None
+
+        print(f"Unequipped {item['name']} from {slot}.")
+        if story:
+            auto_save(player, story)
+
+    def apply_stats(self, player, item):
+        player.max_damage += item["atk"]
+        player.defense += item["def"]
+        player.max_hp += item["hp"]
+        player.hp += item["hp"]
+
+    def remove_stats(self, player, item):
+        player.max_damage -= item["atk"]
+        player.defense -= item["def"]
+        player.max_hp -= item["hp"]
+        if player.hp > player.max_hp:
+            player.hp = player.max_hp
+
+    def find_slot_for_item(self, item_name):
+        for slot in self.gear:
+            if item_name in slot or slot in item_name:
+                return slot
+        return None

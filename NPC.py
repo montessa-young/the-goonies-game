@@ -1,104 +1,35 @@
-import time
-import random
-from BlacksmithBuyables import shop
-#----------------------
-# Davey (Black Smith)
-#----------------------
+class Enemy:
+    def __init__(self, name, hp, min_damage, max_damage):
+        self.name = name
+        self.hp = hp
+        self.min_damage = min_damage
+        self.max_damage = max_damage
 
 
-def Davey():
-    print("Davey: Would you like to buy; Headgear, Facegear, Undershirtgear, Overshirtgear, Belt, Pants, Shoes?")
-    shop()
+class NPC:
+    def __init__(self, name, dialogue):
+        self.name = name
+        self.dialogue = dialogue
+
+    def talk(self):
+        print(f"{self.name}: {self.dialogue}")
 
 
-#----------------------
-# Micheal Jackson (Intro)
-#----------------------
-
-    def MikeJack():
-        while True:
-            autosaveran = random.randint(1,6)
-            Intro_MikeJack_Dial = ("Michael Jackson: Would you like to go on a quick adventure with me? y/n")
-            yn_choice = ()
-            if yn_choice == "y":
-                print("Awesome sauce! Come with me to your first battle!")
-                break
-            elif yn_choice == "n":
-                print("Too bad! You can't play the game without starting it!")
-                break
-            else:
-                print("Please retry, invalid option")
-        time.sleep(1)
-        print("Hey, just to let you know that 8 is the pause menu, and 9 is the inventory button,")
-        print("the menu or inventory will NOT be available during quick times, boss battles, shops,")
-        print("etc., etc., so be prepared for that")
-        time.sleep(10)
-        print("Auto Saving...")
-        time.sleep(autosaveran)
-        print("OH NO! GEORGE HAS DESTROYED MJ!!!!")
-        Davey()
+class Blacksmith(NPC):
+    def __init__(self):
+        super().__init__(
+            "Davey the Blacksmith",
+            "Welcome traveler! Need gear? I’ve got the finest steel in the kingdom."
+        )
 
 
-#----------------------
-# Mario (50 Mafia Boss)
-#----------------------
+class ShopItem:
+    def __init__(self, name, price, effect=None):
+        self.name = name
+        self.price = price
+        self.effect = effect
 
-
-#----------------------
-# George Droyd (5 thug)
-#----------------------
-
-
-#----------------------
-# Rick Astley (20 thug)
-#----------------------
-
-
-#----------------------
-# Master Chief (45 thug)
-#----------------------
-
-
-#----------------------
-# Sonic (60 Emperor)
-#----------------------
-
-
-#----------------------
-# jacksepticeye (38 Mercenary)
-#----------------------
-
-
-#----------------------
-# Thugs
-#----------------------
-
-
-#----------------------
-# Guards
-#----------------------
-
-
-#----------------------
-# Royal Guards
-#----------------------
-
-
-#----------------------
-# Police
-#----------------------
-
-
-#----------------------
-# Donald Trump (55 President)
-#----------------------
-
-
-#----------------------
-# Julius Caesar (50 Emperor
-
-
-
-
-
-#----------------------
+    def use(self, player):
+        if self.effect:
+            self.effect(player)
+        print(f"You used {self.name}!")
